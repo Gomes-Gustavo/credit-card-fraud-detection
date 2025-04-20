@@ -1,52 +1,53 @@
 import os
 import joblib
-
+from src.data_loader import _get_project_root
 
 def save_model(model, model_path="../models/xgboost_final_model.joblib"):
     """
-    Saves the trained model to the specified path.
+    Saves the given model to the specified path.
 
     Parameters:
-        model: Trained model object (e.g., XGBoost classifier)
-        model_path: Path to save the model file
+        model: Trained model object to be saved.
+        model_path (str): Relative or absolute path where the model will be saved.
     """
     os.makedirs(os.path.dirname(model_path), exist_ok=True)
     joblib.dump(model, model_path)
 
-
 def save_scaler(scaler, scaler_path="../models/amount_scaler.joblib"):
     """
-    Saves the fitted scaler to the specified path.
+    Saves the given scaler to the specified path.
 
     Parameters:
-        scaler: Fitted StandardScaler or similar object
-        scaler_path: Path to save the scaler file
+        scaler: Fitted scaler object to be saved.
+        scaler_path (str): Relative or absolute path where the scaler will be saved.
     """
     os.makedirs(os.path.dirname(scaler_path), exist_ok=True)
     joblib.dump(scaler, scaler_path)
 
-
-def load_model(model_path="../models/xgboost_final_model.joblib"):
+def load_model(model_name="xgboost_final_model.joblib"):
     """
-    Loads a previously saved model from the specified path.
+    Loads a previously saved model from the models directory.
 
     Parameters:
-        model_path: Path to the saved model file
+        model_name (str): Filename of the saved model.
 
     Returns:
-        Loaded model object
+        Loaded model object.
     """
-    return joblib.load(model_path)
+    root = _get_project_root()
+    path = os.path.join(root, "models", model_name)
+    return joblib.load(path)
 
-
-def load_scaler(scaler_path="../models/amount_scaler.joblib"):
+def load_scaler(scaler_name="amount_scaler.joblib"):
     """
-    Loads a previously saved scaler from the specified path.
+    Loads a previously saved scaler from the models directory.
 
     Parameters:
-        scaler_path: Path to the saved scaler file
+        scaler_name (str): Filename of the saved scaler.
 
     Returns:
-        Loaded scaler object
+        Loaded scaler object.
     """
-    return joblib.load(scaler_path)
+    root = _get_project_root()
+    path = os.path.join(root, "models", scaler_name)
+    return joblib.load(path)
