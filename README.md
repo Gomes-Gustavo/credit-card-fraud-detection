@@ -80,7 +80,7 @@ credit-card-fraud-detection/
 To set up the project locally:
 
 ```bash
-git clone https://github.com/your-user/credit-card-fraud-detection.git
+git clone https://github.com/Gomes-Gustavo/credit-card-fraud-detection.git
 cd credit-card-fraud-detection
 pip install -r requirements.txt
 ```
